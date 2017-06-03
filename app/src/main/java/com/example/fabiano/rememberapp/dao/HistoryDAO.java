@@ -25,19 +25,6 @@ public class HistoryDAO extends BaseDAO {
         super(context);
     }
 
-    /*@Override
-    public void onCreate(SQLiteDatabase db) {
-        String sql = "CREATE TABLE history (id INTEGER PRIMARY KEY, id_group INTEGER, title TEXT NOT NULL, detail TEXT, date INTEGER NOT NULL );";
-        db.execSQL(sql);
-    }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        String sql = "DROP TABLE IF EXISTS history;";
-        db.execSQL(sql);
-        onCreate(db);
-    }*/
-
     public void persist(History history) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues cv = getDataHistory(history);
@@ -46,7 +33,7 @@ public class HistoryDAO extends BaseDAO {
 
     public List<History> fetchAll(Long id_group) {
         SQLiteDatabase db = getWritableDatabase();
-        Cursor c = db.rawQuery("SELECT * FROM history ", null);
+        Cursor c = db.rawQuery("SELECT * FROM history where id_group = " + id_group + " order by date desc", null);
         List<History> historys = new ArrayList<History>();
         while (c.moveToNext()) {
             History history = new History();

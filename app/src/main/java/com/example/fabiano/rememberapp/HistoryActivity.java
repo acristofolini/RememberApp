@@ -21,6 +21,7 @@ public class HistoryActivity extends AppCompatActivity {
     private HistoryHelper historyHelper;
     private ListView historyList;
     private History history;
+    private Group group;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,14 +40,14 @@ public class HistoryActivity extends AppCompatActivity {
         Intent intent = getIntent();
         // recupera o campo action passado por parâmetro para identificar se bloqueia ou não o editText
         String action = intent.getStringExtra("action");
-        Group group = (Group) intent.getSerializableExtra("group");
+        group = (Group) intent.getSerializableExtra("group");
 
         //Toast.makeText(HistoryActivity.this, "" + group.getGroup(), Toast.LENGTH_SHORT).show();
 
         campo_group.setText(group.getGroup());
         campo_group.setEnabled(false);
 
-        if (action.equals("save")) {
+        if ("save".equals(action)) {
             // se aberta a tela através do item selecionado, desabilita o item group_folder
             bt_edit_history.hide();
             bt_del_history.hide();
@@ -91,6 +92,7 @@ public class HistoryActivity extends AppCompatActivity {
                 HistoryDAO dao = new HistoryDAO(HistoryActivity.this);
                 if (history == null) {
                     history = historyHelper.getHistory();
+                    history.setIdGroup(group.getId());
                     dao.persist(history);
                 } else {
                     History localHistory = historyHelper.getHistory();

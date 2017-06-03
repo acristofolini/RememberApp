@@ -1,5 +1,7 @@
 package com.example.fabiano.rememberapp.data;
 
+import com.example.fabiano.rememberapp.util.DateUtil;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -15,7 +17,7 @@ public class History implements Serializable {
     public static final String ID_COLUMN       = "id";
     public static final String ID_GROUP_COLUMN = "id_group";
     public static final String TITLE_COLUMN    = "title";
-    public static final String DATE_COLUMN     = "date_history";
+    public static final String DATE_COLUMN     = "date";
     public static final String DETAIL_COLUMN   = "detail";
 
 
@@ -63,6 +65,6 @@ public class History implements Serializable {
 
     @Override
     public String toString() {
-        return dateHistory + " - " + title;
+        return DateUtil.formatDate(dateHistory) + " - " + title;
     }
 }

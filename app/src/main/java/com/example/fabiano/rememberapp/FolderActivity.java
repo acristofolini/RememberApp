@@ -200,6 +200,7 @@ public class FolderActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> list, View item, int position, long id) {
                 History history = (History) historyList.getItemAtPosition(position);
                 Intent intentGoToEdit = new Intent(FolderActivity.this, HistoryActivity.class);
+                intentGoToEdit.putExtra("group", group);
                 intentGoToEdit.putExtra(History.TABLE_NAME, history);
                 startActivity(intentGoToEdit);
             }
