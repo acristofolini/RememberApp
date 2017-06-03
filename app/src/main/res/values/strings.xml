@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">RememberApp</string>
+    <string name="action_settings">Settings</string>
+    <string name="add_group_title">Adicionar Grupo</string>
+    <string name="add_group">Adicionar</string>
+    <string name="titulo">Exame/Consulta</string>
+</resources>
